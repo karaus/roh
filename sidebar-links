@@ -1,70 +1,97 @@
-<table align="center" width="100%" class="bordercolor" cellpadding="4" cellspacing="1">
-<tr>
-<td align="center" class="titlebg"><center><img src="https://tinypic.host/images/2022/06/08/quicklink.png" border="0"></center>
-<script language="JavaScript">
+<table
+  align="center"
+  width="100%"
+  class="bordercolor"
+  cellpadding="4"
+  cellspacing="1"
+>
+  <tr>
+    <td align="center" class="titlebg">
+      <center>
+        <img
+          src="https://tinypic.host/images/2022/06/08/quicklink.png"
+          border="0"
+        />
+      </center>
+      <script language="JavaScript">
+        // Create array to hold four URLs;
+        var links = new Array(9);
+        links[0] = window.location.href;
+        links[1] = "https://riseofhades.proboards.com/post/28361/thread";
+        links[2] = "https://riseofhades.proboards.com/post/28360/thread";
+        links[3] = "https://riseofhades.proboards.com/post/28362/thread";
+        links[4] = "https://riseofhades.proboards.com/post/28363/thread";
+        links[5] = "http://riseofhades.proboards.com/index.cgi?board=pending";
+        links[6] = "http://riseofhades.proboards.com/index.cgi?board=claim";
+        links[7] = "http://riseofhades.proboards.com/index.cgi?board=requests";
+        links[8] = "http://riseofhades.proboards.com/index.cgi?board=ads"; // No semi colon on last line
 
-// Create array to hold four URLs;
-var dest = new Array(9);
-dest[0] = window.location.href;
-dest[1] = "https://riseofhades.proboards.com/post/28361/thread";
-dest[2] = "https://riseofhades.proboards.com/post/28360/thread";
-dest[3] = "https://riseofhades.proboards.com/post/28362/thread";
-dest[4] = "https://riseofhades.proboards.com/post/28363/thread";
-dest[5] = "http://riseofhades.proboards.com/index.cgi?board=pending";
-dest[6] = "http://riseofhades.proboards.com/index.cgi?board=claim";
-dest[7] = "http://riseofhades.proboards.com/index.cgi?board=requests";
-dest[8] = "http://riseofhades.proboards.com/index.cgi?board=ads"// No semi colon on last line
+        // Create array to hold four URLs;
+        var users = new Array(4);
+        users[0] = window.location.href;
+        users[1] = "https://riseofhades.proboards.com/user/1";
+        users[2] = "https://riseofhades.proboards.com/user/94";
+        users[3] = "https://riseofhades.proboards.com/user/210"; // No semi colon on last line
 
-
-
-
-
-function go(d) {
-
-// Change location of current window one selected from menu
-// d.menu.options.selectedIndex returns a number that corresponds
-// to the choice they selected in the pop up menu on the form
-// If a user selected the first choice, selectedIndex = 0 and the
-// URL will be set to dest[0] or http://www.utexas.edu
-
-
-window.location.href = dest[d.destination.options.selectedIndex];
-
-// Open new window with selected location
-// var x = window.open(dest[d.destination.options.selectedIndex],"New Window");
-
-// To set the URL for another frame in this frameset
-// top.framename.location.href = dest[d.menu.options.selectedIndex]);
-
-}
-</script>
-
-
-
-<form name="x">
-<label for="destination"><h3></h3></label>
-<select id="destination" onchange="go(x)">
-<option>QUICK LINKS</option>
-<option value="1">rules</option>
-
-<option value="2">plot</option>
-
-<option value="3">member groups</option>
-
-<option value="4">faqs</option>
-
-<option value="5">applications</option>
-
-<option value="6">claims</option>
-
-<option value="7">wanted charries</option>
-
-<option value="8">advertisements</option>
+        function go(d, type) {
+          // Change location of current window one selected from menu
+          // d.menu.options.selectedIndex returns a number that corresponds
+          // to the choice they selected in the pop up menu on the form
+          // If a user selected the first choice, selectedIndex = 0 and the
+          // URL will be set to dest[0] or http://www.utexas.edu
 
 
-</select>
-</form>
+          // Overloading your "go" function, should allow you to trim down the JS and only use 1, while still differentiating the users/links
+          // and any potential future sections as well. 
+          if (type === "users") {
+            window.location.href = users[d.destination.options.selectedIndex];
+          }
 
-</td>
-</tr>
+          if (type === "links") {
+            window.location.href = links[d.destination.options.selectedIndex];
+          }
+
+          // Open new window with selected location
+          // var x = window.open(dest[d.destination.options.selectedIndex],"New Window");
+
+          // To set the URL for another frame in this frameset
+          // top.framename.location.href = dest[d.menu.options.selectedIndex]);
+        }
+      </script>
+
+      <form name="quicklinks">
+        <label for="destination"><h3></h3></label>
+        <select id="destination" onchange="go(quicklinks, 'links')">
+          <option>QUICK LINKS</option>
+          <option value="1">rules</option>
+
+          <option value="2">plot</option>
+
+          <option value="3">member groups</option>
+
+          <option value="4">faqs</option>
+
+          <option value="5">applications</option>
+
+          <option value="6">claims</option>
+
+          <option value="7">wanted charries</option>
+
+          <option value="8">advertisements</option>
+        </select>
+      </form>
+
+      <form name="users">
+        <label for="destination"><h3></h3></label>
+        <select id="destination" onchange="go(users, 'users')">
+          <option>ADMIN</option>
+          <option value="1">k'dizzle</option>
+
+          <option value="2">emily</option>
+
+          <option value="3">terbear</option>
+        </select>
+      </form>
+    </td>
+  </tr>
 </table>
